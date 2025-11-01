@@ -1,0 +1,40 @@
+{
+  "gotham_bank_heist": {
+    "title": "The Gotham Bank Heist",
+    "description": "A chaotic but clever heist at Gotham's First National Bank.",
+    "suspects": ["The Joker", "The Riddler", "The Penguin", "Catwoman"],
+    "clues": {
+      "RiddleLeftAtScene": {
+        "label": "Riddle Left at Scene?",
+        "probabilities": [0.10, 0.95, 0.01, 0.01]
+      },
+      "CrimeIsChaotic": {
+        "label": "Was the crime scene chaotic?",
+        "probabilities": [0.90, 0.20, 0.30, 0.10]
+      },
+      "TheatricalHeist": {
+        "label": "Was the heist overtly theatrical?",
+        "probabilities": [0.60, 0.50, 0.90, 0.80]
+      }
+    }
+  },
+  "arkham_breakout": {
+    "title": "The Arkham Asylum Breakout",
+    "description": "A key psychologist has gone missing during a suspiciously timed riot at Arkham.",
+    "suspects": ["Harley Quinn", "Scarecrow", "Poison Ivy", "Mr. Freeze"],
+    "clues": {
+      "FearToxinPresent": {
+        "label": "Traces of Fear Toxin found?",
+        "probabilities": [0.05, 0.90, 0.10, 0.01]
+      },
+      "UnusualPlantGrowth": {
+        "label": "Rapid, unusual plant growth nearby?",
+        "probabilities": [0.10, 0.05, 0.95, 0.01]
+      },
+      "CryoResidueFound": {
+        "label": "Was there cryogenic residue on site?",
+        "probabilities": [0.01, 0.01, 0.05, 0.90]
+      }
+    }
+  }
+}
