@@ -1,48 +1,94 @@
+import streamlit as st
+import pandas as pd
+import json
 from pgmpy.inference import VariableElimination
-from supports.batcomputer_logic import build_phase1_network
 
-def run_investigation():
-    """
-    Main function to run the command-line solver.
-    """
-    print("Initializing Batcomputer...")
-    
-    # 1. Build the model by calling the function from our other file
+# Importing the "factory" functions from our logic file
+from supports.batcomputer_logic import create_mystery_model, create_graphviz_plot
+
+# --- 1. App Setup ---
+st.set_page_config(page_title="DeTechtive", page_icon="🦇", layout="wide")
+st.title("🦇 DeTechtive: The Batcomputer")
+
+# --- 2. Loading All Scenarios ---
+@st.cache_data
+def load_scenarios():
+    """Load all mystery scenarios from the JSON file."""
     try:
-        model = build_phase1_network()
-    except Exception as e:
-        print(f"\n--- ERROR: Could not build model: {e} ---")
-        return
+        # Loading from the 'data' subfolder
+        with open('data/gotham_mysteries.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        st.error("FATAL ERROR: 'data/gotham_mysteries.json' not found.")
+        return {}
 
-    # 2. Create the inference engine
+scenarios = load_scenarios()
+if not scenarios:
+    st.stop() # Stop if the JSON file is missing or empty
+
+# --- 3. User Scenario Selection ---
+st.markdown("Welcome, Batman. Select a case file to begin your investigation.")
+
+# Creating a dropdown menu of all available cases
+selected_scenario_key = st.selectbox(
+    "Select a Case File:",
+    options=list(scenarios.keys()),
+    format_func=lambda key: scenarios[key]['title'] # Show the "nice title"
+)
+
+# Loading the data for the one case the user selected
+selected_scenario_data = scenarios[selected_scenario_key]
+
+# --- 4. Dynamically Build the Model & UI ---
+try:
+    # Building the network and creating the inference engine
+    model = create_mystery_model(selected_scenario_data)
     inference = VariableElimination(model)
+    suspects = selected_scenario_data['suspects']
+    clues = selected_scenario_data['clues']
+except Exception as e:
+    st.error(f"Error building Bayesian network for this case: {e}")
+    st.stop()
 
-    # --- 3. Run Test Scenarios ---
+# --- 5. Displaying Case Info & Network Graph ---
+col1, col2 = st.columns(2)
+with col1:
+    st.header(selected_scenario_data['title'])
+    st.write(selected_scenario_data['description'])
+with col2:
+    st.subheader("Case Logic Structure")
+    # Displaying the visual graph of the network
+    st.graphviz_chart(create_graphviz_plot(model))
 
-    # SCENARIO 1: No Evidence
-    print("\n--- CASE 1: No Evidence (Prior Probabilities) ---")
-    prior_result = inference.query(variables=['GuiltyVillain'])
-    print(prior_result)
+st.markdown("---")
 
-    # SCENARIO 2: A Riddle was Found
-    # pgmpy uses 0 for False and 1 for True
-    evidence_1 = {'RiddleLeftAtScene': 1}
-    print(f"\n--- CASE 2: Evidence is {evidence_1} ---")
-    posterior_result_1 = inference.query(
+# --- 6. Sidebar for DYNAMIC Clue Input ---
+st.sidebar.header("Evidence Log")
+evidence = {}
+# Dynamically create a checkbox for each clue in the selected mystery
+for clue_id, clue_info in clues.items():
+    # We use a unique key to prevent bugs when switching scenarios
+    if st.sidebar.checkbox(clue_info['label'], key=f"{selected_scenario_key}_{clue_id}"):
+        evidence[clue_id] = 1  # 1 means True
+
+# --- 7. Running Inference & Display Results ---
+if not evidence:
+    st.subheader("Initial Suspect Assessment (Prior Probabilities):")
+    result = inference.query(variables=['GuiltyVillain'])
+else:
+    st.subheader("Analysis Based on Current Evidence:")
+    # Showing the friendly labels for the evidence
+    st.write("Evidence provided:", [clues[key]['label'] for key in evidence.keys()])
+    result = inference.query(
         variables=['GuiltyVillain'],
-        evidence=evidence_1
+        evidence=evidence
     )
-    print(posterior_result_1)
 
-    # SCENARIO 3: A Riddle was Found AND the crime was Theatrical
-    evidence_2 = {'RiddleLeftAtScene': 1, 'TheatricalHeist': 1}
-    print(f"\n--- CASE 3: Evidence is {evidence_2} ---")
-    posterior_result_2 = inference.query(
-        variables=['GuiltyVillain'],
-        evidence=evidence_2
-    )
-    print(posterior_result_2)
+# Formatting and displaying the results
+probabilities = result.values
+df = pd.DataFrame({'Suspect': suspects, 'Probability of Guilt': probabilities})
+df = df.sort_values(by='Probability of Guilt', ascending=False)
 
-# This makes the script runnable
-if __name__ == "__main__":
-    run_investigation()
+# Displaying the formatted table and the bar chart
+st.dataframe(df.style.format({'Probability of Guilt': '{:.2%}'}), use_container_width=True)
+st.bar_chart(df.set_index('Suspect'))
