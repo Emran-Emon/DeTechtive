@@ -25,7 +25,7 @@ Desktop.ini
 logs/
 
 # Node / JS (login_signup)
-login_signup/node_modules
+login_signup/node_modules/
 login_signup/package.json
 login_signup/package-lock.json
 login_signup/pnpm-lock.yaml
