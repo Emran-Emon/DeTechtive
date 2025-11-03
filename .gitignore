@@ -24,6 +24,17 @@ Desktop.ini
 *.log
 logs/
 
+# Node / JS (login)
+login/node_modules/
+login/package.json
+login/package-lock.json
+login/pnpm-lock.yaml
+login/yarn.lock
+login/src/package.json
+login/src/package-lock.json
+login/src/pnpm-lock.yaml
+login/src/yarn.lock
+
 # -----------------------
 # Optional (uncomment as needed)
 # -----------------------
