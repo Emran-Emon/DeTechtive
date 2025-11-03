@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import svgPaths from "./svg-n8gvvf3z5j";
 import img4Ce97Fa31F2D4C4CA34DD8Dc0353B9681 from "figma:asset/6898a170d5bd2559f56928aab2c3123ef02554d3.png";
 import imgDd65E24F232E4A14Ba293Ca8Cab412Dc2 from "figma:asset/48d93dd01a31a2550129b258a181f5c067f2f5eb.png";
-import imgDd65E24F232E4A14Ba293Ca8Cab412Dc1 from "figma:asset/91bacf4a002a8dec7bfa134cb3f2509977ceb889.png";
+
 
 export default function Signup() {
   const navigate = useNavigate();
