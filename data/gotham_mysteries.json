@@ -36,5 +36,176 @@
         "probabilities": [0.01, 0.01, 0.05, 0.90]
       }
     }
+  },
+  "gcpd_sabotage": {
+    "title": "The GCPD Sabotage",
+    "description": "The Bat-Signal has been sabotaged and confidential GCPD files have been encrypted.",
+    "suspects": ["The Riddler", "Anarky", "Hugo Strange", "Bane"],
+    "clues": {
+      "ComplexCipherUsed": {
+        "label": "Were the files locked with a complex cipher?",
+        "probabilities": [0.90, 0.60, 0.40, 0.10]
+      },
+      "AntiEstablishmentMessage": {
+        "label": "Was an anti-establishment message left behind?",
+        "probabilities": [0.20, 0.95, 0.10, 0.30]
+      },
+      "PsychologicalProfile": {
+        "label": "Did the attack seem designed to profile Batman?",
+        "probabilities": [0.30, 0.10, 0.85, 0.05]
+      }
+    }
+  },
+  "fear_in_the_narrows": {
+    "title": "Fear in the Narrows",
+    "description": "A chemical agent causing mass panic has been released in the Narrows.",
+    "suspects": ["Scarecrow", "The Joker", "Mad Hatter", "Firefly"],
+    "clues": {
+      "CausesPanicNotFear": {
+        "label": "Does the toxin cause chaotic panic instead of pure terror?",
+        "probabilities": [0.20, 0.85, 0.40, 0.10]
+      },
+      "MindControlElement": {
+        "label": "Is there evidence of a mind-control component?",
+        "probabilities": [0.10, 0.20, 0.90, 0.01]
+      },
+      "BurnMarksOnDispersal": {
+        "label": "Are there scorch marks at the dispersal sites?",
+        "probabilities": [0.05, 0.15, 0.01, 0.95]
+      }
+    }
+  },
+  "iceberg_lounge_caper": {
+    "title": "The Iceberg Lounge Caper",
+    "description": "A high-stakes illegal weapons deal was ambushed at the Iceberg Lounge.",
+    "suspects": ["The Penguin", "Two-Face", "Black Mask", "Catwoman"],
+    "clues": {
+      "CoinFoundAtScene": {
+        "label": "Was a two-headed coin found at the scene?",
+        "probabilities": [0.01, 0.90, 0.05, 0.01]
+      },
+      "ExcessiveBrutality": {
+        "label": "Was the ambush excessively brutal?",
+        "probabilities": [0.20, 0.40, 0.95, 0.10]
+      },
+      "CleanGetaway": {
+        "label": "Was the heist remarkably clean and stealthy?",
+        "probabilities": [0.30, 0.10, 0.05, 0.90]
+      }
+    }
+  },
+  "museum_mayhem": {
+    "title": "The Museum Mayhem",
+    "description": "An ancient artifact stolen from the Gotham Museum. Security disabled with force.",
+    "suspects": ["Ra's al Ghul", "Bane", "Talon", "Mr. Freeze"],
+    "clues": {
+      "LeagueOfAssassinsSign": {
+        "label": "Was the symbol of the League of Assassins found?",
+        "probabilities": [0.90, 0.10, 0.20, 0.01]
+      },
+      "SecurityDisabledByForce": {
+        "label": "Was security disabled by sheer brute force?",
+        "probabilities": [0.20, 0.95, 0.70, 0.30]
+      },
+      "SilentAndAcrobatic": {
+        "label": "Did the thief display silent, acrobatic prowess?",
+        "probabilities": [0.60, 0.10, 0.90, 0.05]
+      }
+    }
+  },
+  "double_cross_at_docks": {
+    "title": "The Double-Cross at the Docks",
+    "description": "A meeting between rival gangs erupted in violence. A third party intervened.",
+    "suspects": ["Two-Face", "Black Mask", "The Penguin", "The Joker"],
+    "clues": {
+      "PerfectlySymmetricalCrime": {
+        "label": "Was the crime scene eerily symmetrical?",
+        "probabilities": [0.90, 0.05, 0.10, 0.25]
+      },
+      "GoalWasChaosNotProfit": {
+        "label": "Does it appear the goal was simply to create chaos?",
+        "probabilities": [0.20, 0.10, 0.05, 0.95]
+      },
+      "CrimeLordIntimidation": {
+        "label": "Was it a power play to intimidate other gangs?",
+        "probabilities": [0.40, 0.90, 0.80, 0.10]
+      }
+    }
+  },
+  "ace_chemicals_conspiracy": {
+    "title": "The Ace Chemicals Conspiracy",
+    "description": "An executive at Ace Chemicals has been murdered, and a formula stolen.",
+    "suspects": ["The Joker", "Firefly", "Poison Ivy", "Man-Bat"],
+    "clues": {
+      "VictimHadGrinningSmile": {
+        "label": "Did the victim die with an unnatural, wide grin?",
+        "probabilities": [0.95, 0.01, 0.05, 0.01]
+      },
+      "FormulaWasAnAccelerant": {
+        "label": "Was the stolen formula a powerful fire accelerant?",
+        "probabilities": [0.10, 0.90, 0.20, 0.05]
+      },
+      "FormulaWasAPlantGrowth": {
+        "label": "Was the stolen formula a plant growth hormone?",
+        "probabilities": [0.05, 0.10, 0.95, 0.15]
+      }
+    }
+  },
+  "wayne_tower_infiltration": {
+    "title": "The Wayne Tower Infiltration",
+    "description": "The R&D lab at Wayne Tower was breached. A prototype is missing.",
+    "suspects": ["Catwoman", "Talon", "Hush", "Ra's al Ghul"],
+    "clues": {
+      "BypassedAdvancedSecurity": {
+        "label": "Was advanced security bypassed without a trace?",
+        "probabilities": [0.90, 0.70, 0.50, 0.80]
+      },
+      "PersonalVendettaAgainstWayne": {
+        "label": "Does it seem like a vendetta against Bruce Wayne?",
+        "probabilities": [0.10, 0.20, 0.95, 0.40]
+      },
+      "PerpetratorKnewLayout": {
+        "label": "Did the thief have intimate knowledge of the layout?",
+        "probabilities": [0.20, 0.80, 0.90, 0.30]
+      }
+    }
+  },
+  "botanical_gardens_scare": {
+    "title": "The Botanical Gardens Scare",
+    "description": "Several citizens found catatonic in the Botanical Gardens covered in pollen.",
+    "suspects": ["Poison Ivy", "Scarecrow", "Mad Hatter", "Harley Quinn"],
+    "clues": {
+      "VictimsControlledByPollen": {
+        "label": "Are victims controlled by a plant-based agent?",
+        "probabilities": [0.95, 0.10, 0.20, 0.05]
+      },
+      "PollenCausedHallucinations": {
+        "label": "Does the pollen cause vivid hallucinations?",
+        "probabilities": [0.30, 0.90, 0.40, 0.10]
+      },
+      "SceneIsWhimsicalAndStrange": {
+        "label": "Is the crime scene arranged in a whimsical manner?",
+        "probabilities": [0.10, 0.05, 0.85, 0.60]
+      }
+    }
+  },
+  "the_last_laugh": {
+    "title": "The Last Laugh",
+    "description": "The mayor was attacked with a strange, harmless prank that turned deadly.",
+    "suspects": ["The Joker", "Harley Quinn", "The Riddler", "The Trickster"],
+    "clues": {
+      "PrankBasedAttack": {
+        "label": "Was the attack a deadly version of a classic prank?",
+        "probabilities": [0.95, 0.70, 0.10, 0.85]
+      },
+      "ComplexRubeGoldberg": {
+        "label": "Was the attack an overly complex machine?",
+        "probabilities": [0.30, 0.20, 0.90, 0.40]
+      },
+      "MotiveSeemsToBeAttention": {
+        "label": "Did the crime seem designed purely for attention?",
+        "probabilities": [0.80, 0.60, 0.40, 0.90]
+      }
+    }
   }
 }
